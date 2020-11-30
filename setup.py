@@ -12,9 +12,9 @@ def read_file(filename):
     return long_description
 
 
-def read_requirements(filename):
-    return [line.strip() for line in read_file(filename).splitlines() if not line.startswith('#')]
+readme = read_file('README.md')
 
+requirements = [line.strip() for line in read_file('requirements.txt').splitlines() if not line.startswith('#')]
 
 setuptools.setup(
     name="GitDatabase",
@@ -24,10 +24,10 @@ setuptools.setup(
     maintainer="Han",
     maintainer_email="mirrorhanyu@gmail.com",
     description="use git repository as database",
-    long_description=read_file('README.md'),
+    long_description=readme,
     long_description_content_type="text/markdown",
     url="https://github.com/mirrorhanyu/GitDatabase",
-    install_requires=read_requirements('requirements.txt'),
+    install_requires=requirements,
     packages=['gitdatabase'],
     classifiers=[
         "Programming Language :: Python :: 3",
