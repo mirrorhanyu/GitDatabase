@@ -16,7 +16,7 @@ jobs:
           python-version: '3.8'
       - name: Install dependencies
         run: |
-          echo ${GITHUB_REF#refs/*/}
+          echo ${GITHUB_REF#refs/tags/}
           python -m pip install --upgrade pip
           pip install wheel twine
       - name: Build and publish
