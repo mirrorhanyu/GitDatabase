@@ -15,11 +15,14 @@ jobs:
         with:
           python-version: '3.8'
       - name: Install dependencies
+        if: startsWith(github.ref, 'refs/tags/')
         run: |
           echo ${GITHUB_REF#refs/tags/}
+          echo ${{ github.ref }}
           python -m pip install --upgrade pip
           pip install wheel twine
       - name: Build and publish
+        if: startsWith(github.ref, 'refs/tags/')
         env:
           TWINE_USERNAME: ${{ secrets.PYPI_USERNAME }}
           TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
