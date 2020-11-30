@@ -12,7 +12,7 @@ class Client:
         local_path = f'{os.path.dirname(os.path.dirname(__file__))}/{username}-database'
         shutil.rmtree(local_path, ignore_errors=True)
         remote = f'https://{username}:{password}@{repo}'
-        Repo.clone_from(remote, local_path, branch)
+        Repo.clone_from(remote, local_path, branch=kwargs.pop('branch', 'main'))
         self.database = Repo(local_path)
 
     def __getattr__(self, collection_name):
